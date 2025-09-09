@@ -1,0 +1,116 @@
+{
+  "FileVersion": 2,
+  "Id": "8524c555-b172-46ef-be42-7b7b7bb102e4",
+  "Items": [
+    {
+      "Id": "05c87f08-36f8-4173-995d-dea7a6601ccc",
+      "Command": "standalone-svc",
+      "Items": [
+        {
+          "Id": "ec7c8885-3303-44ff-bb50-ade63f721595",
+          "Command": "--control-pipe \"\\\\.\\pipe\\eff\""
+        },
+        {
+          "Id": "16c492e5-6878-4801-a0f7-d0ed7afa4847",
+          "Command": "--shm-name pm_my_intro"
+        }
+      ]
+    },
+    {
+      "Id": "4c4287df-9395-4cae-b58f-e98f721e084c",
+      "Command": "--svc-as-child"
+    },
+    {
+      "Id": "55e24bd6-46de-438b-a379-2c5df5f2f6a2",
+      "Command": "--files-working"
+    },
+    {
+      "Id": "1dbdf4ec-40c6-4c27-954e-b3d1d86af0c5",
+      "Command": "--log-level debug"
+    },
+    {
+      "Id": "f2f249e9-3483-47c0-92c5-189db9eb1efe",
+      "Command": "--log-level verbose"
+    },
+    {
+      "Id": "bab48d6d-3a48-4b3b-9ed9-903e381824c6",
+      "Command": "--log-svc-pipe-enable"
+    },
+    {
+      "Id": "bda24a31-51f4-481a-96f0-037e62a1e578",
+      "Command": "--middleware-dll-path .\\PresentMonAPI2.dll"
+    },
+    {
+      "Id": "a3c885b0-5528-4c13-a876-475500be88cd",
+      "Command": "--log-middleware-copy"
+    },
+    {
+      "Id": "e8eeba3f-b756-4276-b1b3-10eaf2069b40",
+      "Command": "--enable-timestamp-column"
+    },
+    {
+      "Id": "5cef3a6c-d5a7-4ef3-ba5a-ee1aa9144241",
+      "Command": "--enable-diagnostic"
+    },
+    {
+      "Id": "907ff44e-4734-41ba-8eb1-1ee21d94bfcf",
+      "Command": "--log-allow-list \"b stak.txt\""
+    },
+    {
+      "Id": "92b05cc7-82c0-41c9-b2a3-14883ea280ba",
+      "Command": "--log-deny-list \"b stak.txt\""
+    },
+    {
+      "Id": "1c46fa7d-4a6d-4c65-bd76-7b3af4eca5aa",
+      "Command": "--log-folder C:\\scratch"
+    },
+    {
+      "Id": "162ab5d9-e860-4bd5-a53f-ee33a58a3b12",
+      "Command": "--log-trace-level warning"
+    },
+    {
+      "Id": "f6c76be2-0dcf-4b04-917c-d84bcb493ed5",
+      "Command": "--allow-tearing"
+    },
+    {
+      "Id": "202c5983-1f88-4346-a72a-66a871db376d",
+      "Command": "--disable-alpha"
+    },
+    {
+      "Id": "d1b2992e-0793-42c5-9569-f52f09dd75fc",
+      "Command": "--debug-wait-render"
+    },
+    {
+      "Id": "36ae38e6-9866-4c86-9f1f-4dd46bd2a1ef",
+      "Command": "--debug-wait-client"
+    },
+    {
+      "Id": "04169744-d7a6-46e6-a1dd-ec3854547dcd",
+      "Command": "--help"
+    },
+    {
+      "Id": "0a44a142-1ca4-4e76-9632-bad6e9e845ff",
+      "Command": "--ui-flag enable-ui-dev-options"
+    },
+    {
+      "Id": "d660460c-73a3-4173-9155-fde0756a2178",
+      "Command": "--ui-flag debug-wait-client"
+    },
+    {
+      "Id": "3a21ce62-1247-45a5-81ef-6698569c73e4",
+      "Command": "--ui-option url  \"http://localhost:5173\""
+    },
+    {
+      "Id": "6dacd0ef-59fc-4c1d-97a1-4f0120e84405",
+      "Command": "--ui-option url  \"http://google.com\""
+    },
+    {
+      "Id": "eeaa57c0-80dc-4b72-a051-77843e4706f6",
+      "Command": "--ui-option web-root \"C:\\Files\\Repos\\PresentMon\\IntelPresentMon\\AppCef\\ipm-ui-vue\\dist\""
+    },
+    {
+      "Id": "5217575f-37d8-4f60-a2d2-a85992ce4341",
+      "Command": "--ui-flag enable-chromium-debug"
+    }
+  ]
+}

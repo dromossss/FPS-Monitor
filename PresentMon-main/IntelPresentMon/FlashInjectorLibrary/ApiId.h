@@ -1,0 +1,17 @@
+#pragma once
+
+#include "Generated/API_DXGI.h"
+
+namespace GfxLayer
+{
+	enum API_ID: uint32_t
+	{
+		API_UNKNOWN = 0,
+		API_D3D10_CREATE_DEVICE,
+		API_D3D10_CREATE_DEVICE_AND_SWAPCHAIN,
+		API_D3D11_CREATE_DEVICE,
+		API_D3D11_CREATE_DEVICE_AND_SWAPCHAIN,
+        DXGI_API_IDS
+		API_CALL_COUNT
+	};
+}

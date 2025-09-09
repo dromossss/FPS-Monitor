@@ -1,0 +1,17 @@
+monitor-overlay/
+│── main.py                # Point d’entrée
+│
+├── ui/
+│   ├── overlay.py          # Overlay transparent
+│   └── settings_window.py  # Fenêtre avec cases à cocher
+│
+├── system/
+│   ├── cpu_monitor.py      # Récupération usage/temp CPU
+│   ├── gpu_monitor.py      # Récupération usage/temp GPU
+│   └── fps_monitor.py      # Tracking FPS (placeholder)
+│
+├── config/
+│   └── settings.json       # Sauvegarde des préférences utilisateur
+│
+└── utils/
+    └── __init__.py         # Fonctions utilitaires (couleurs, formatage…)

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33927.249
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pm_convert_csv", "pm_convert_csv.vcxproj", "{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Debug|x64.ActiveCfg = Debug|x64
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Debug|x64.Build.0 = Debug|x64
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Debug|x86.ActiveCfg = Debug|Win32
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Debug|x86.Build.0 = Debug|Win32
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Release|x64.ActiveCfg = Release|x64
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Release|x64.Build.0 = Release|x64
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Release|x86.ActiveCfg = Release|Win32
+		{E88D42F7-4FEE-4723-89E7-3D6A2461E4B5}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67625490-DC22-44DC-B57F-6E3042DA5589}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+B. Utiliser OpenHardwareMonitorLib.dll via C#
+
+Tu peux embarquer le DLL dans ton projet Python avec pythonnet ou faire un petit wrapper C# qui renvoie les infos au Python.
+
+Avantages : accès direct aux capteurs CPU et GPU, pas besoin de serveur.
+
+Exemple workflow :
+
+Écrire un petit programme C# qui lit les stats via OHM DLL.
+
+Exposer une fonction qui retourne CPU %, CPU Temp, GPU %, GPU Temp.
+
+Depuis Python, appeler ce programme via subprocess ou pythonnet.

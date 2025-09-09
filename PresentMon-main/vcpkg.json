@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "presentmon",
+  "version": "0.6.0",
+  "dependencies": [
+    "gtest",
+    "cli11",
+    "boost-interprocess",
+    "boost-process",
+    "cereal",
+    "concurrentqueue",
+    "boost-asio",
+    "winreg",
+    "detours"
+  ],
+  "builtin-baseline": "6062c8fe02d38b10d5291411bc235ae4d02cfe6c"
+}

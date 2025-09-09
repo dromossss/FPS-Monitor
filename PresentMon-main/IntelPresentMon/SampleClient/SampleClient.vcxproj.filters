@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="SampleClient.cpp" />
+    <ClCompile Include="LogSetup.cpp" />
+    <ClCompile Include="LogDemo.cpp" />
+    <ClCompile Include="DiagnosticDemo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="CliOptions.h" />
+    <ClInclude Include="DynamicQuerySample.h" />
+    <ClInclude Include="FrameQuerySample.h" />
+    <ClInclude Include="IntrospectionSample.h" />
+    <ClInclude Include="CheckMetricSample.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="WrapperStaticQuery.h" />
+    <ClInclude Include="MetricListSample.h" />
+    <ClInclude Include="LogDemo.h" />
+    <ClInclude Include="Verbose.h" />
+    <ClInclude Include="LogSetup.h" />
+    <ClInclude Include="DiagnosticDemo.h" />
+  </ItemGroup>
+</Project>

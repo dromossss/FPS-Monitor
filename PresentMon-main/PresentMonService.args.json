@@ -1,0 +1,42 @@
+{
+  "FileVersion": 2,
+  "Id": "3a848e5b-a376-4a22-bbac-e9b3c01bd385",
+  "Items": [
+    {
+      "Id": "c0207ae5-487c-4379-8ccb-e99281ade16e",
+      "Command": "--help"
+    },
+    {
+      "Id": "46830a22-a458-47b3-8cd4-fac8922d0536",
+      "Command": "--log-level debug"
+    },
+    {
+      "Id": "80017c67-ee0b-4ff6-b9d0-39bdd10d7aeb",
+      "Command": "--enable-stdio-log"
+    },
+    {
+      "Id": "35bb5efb-dfde-4996-8cf9-ab057c4afb48",
+      "Command": "--enable-debugger-log"
+    },
+    {
+      "Id": "f3d08422-5d9f-4dfe-bf6e-e88d0ecfe432",
+      "Command": "--etw-session-name PM_SVC_ETW_SESH"
+    },
+    {
+      "Id": "7cfc715b-6bae-47ee-9dfb-c4239fa3ac48",
+      "Command": "--control-pipe \\\\.\\pipe\\eff"
+    },
+    {
+      "Id": "bc1dd7da-c628-48fe-b073-19c243473c15",
+      "Command": "--intro-nsm pm_my_intro"
+    },
+    {
+      "Id": "17589058-a147-412f-b7ba-0ef6f8c4ad08",
+      "Command": "--nsm-prefix pm_my_nsm"
+    },
+    {
+      "Id": "aafe8ea9-f424-4996-9b6d-109bd2a76f40",
+      "Command": "--disable-ipc-log"
+    }
+  ]
+}

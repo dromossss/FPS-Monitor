@@ -1,0 +1,131 @@
+Parfait ✅
+On va remplacer les **températures factices** (`random.randint`) par de **vraies lectures hardware**.
+
+⚡ Le problème : ni `psutil` ni `GPUtil` ne donnent directement les températures CPU/GPU.
+👉 La solution : utiliser **WMI** (Windows Management Instrumentation) et/ou **OpenHardwareMonitor**.
+
+---
+
+# 🔹 Méthode 1 : WMI (facile mais limité)
+
+### Installation
+
+```bash
+pip install wmi
+```
+
+### Exemple CPU
+
+```python
+import wmi
+
+def get_cpu_temp_wmi():
+    w = wmi.WMI(namespace="root\\wmi")
+    temps = w.MSAcpi_ThermalZoneTemperature()
+    if temps:
+        # Température en dixièmes de Kelvin → conversion en °C
+        return int(temps[0].CurrentTemperature / 10.0 - 273.15)
+    return None
+```
+
+⚠️ Limite : souvent, ça ne retourne rien sur les PC modernes → dépend des drivers ACPI de ta carte mère.
+
+---
+
+# 🔹 Méthode 2 : OpenHardwareMonitor (plus fiable)
+
+### Étapes
+
+1. Télécharge **OpenHardwareMonitor** (gratuit, open source) :
+   👉 [https://openhardwaremonitor.org/](https://openhardwaremonitor.org/)
+
+2. Lance-le **en arrière-plan** (il peut aussi tourner en mode "minimisé dans la barre").
+
+3. Active l’option **"Run a web server"** dans `Options → Remote Web Server`.
+
+   * Par défaut, ça lance un serveur local sur `http://localhost:8085/`
+   * Les températures, usages CPU/GPU y seront dispo en JSON/XML.
+
+### Exemple Python (lecture via JSON)
+
+```python
+import requests
+
+def get_cpu_gpu_from_ohm():
+    try:
+        url = "http://localhost:8085/data.json"
+        r = requests.get(url)
+        data = r.json()
+
+        cpu_temp, gpu_temp, cpu_load, gpu_load = None, None, None, None
+
+        def parse(node):
+            nonlocal cpu_temp, gpu_temp, cpu_load, gpu_load
+            if "Text" in node:
+                name = node["Text"].lower()
+                if "cpu total" in name:
+                    cpu_load = float(node["Value"].replace("%", ""))
+                if "cpu package" in name or "cpu" in name and "temp" in name:
+                    cpu_temp = float(node["Value"].replace("°C", ""))
+                if "gpu core" in name and "%" in node["Value"]:
+                    gpu_load = float(node["Value"].replace("%", ""))
+                if "gpu core" in name and "°c" in node["Value"].lower():
+                    gpu_temp = float(node["Value"].replace("°C", ""))
+
+            if "Children" in node:
+                for child in node["Children"]:
+                    parse(child)
+
+        for hw in data["Children"]:
+            parse(hw)
+
+        return cpu_load, cpu_temp, gpu_load, gpu_temp
+    except Exception as e:
+        print("Erreur lecture OHM:", e)
+        return None, None, None, None
+```
+
+---
+
+# 🔹 Méthode 3 : LibreHardwareMonitor (alternative plus moderne)
+
+* **LibreHardwareMonitor** est un fork plus maintenu d’OpenHardwareMonitor.
+* Tu peux l’utiliser pareil (il expose aussi une API web locale).
+
+---
+
+# 🔹 Intégration dans ton projet
+
+Dans `cpu_monitor.py` et `gpu_monitor.py`, tu remplaces les `random.randint` par un appel à ces fonctions.
+Exemple :
+
+```python
+# cpu_monitor.py
+from system.ohm_reader import get_cpu_gpu_from_ohm
+
+def get_cpu_usage():
+    cpu_load, cpu_temp, _, _ = get_cpu_gpu_from_ohm()
+    return cpu_load or 0, cpu_temp or 0
+```
+
+```python
+# gpu_monitor.py
+from system.ohm_reader import get_cpu_gpu_from_ohm
+
+def get_gpu_usage():
+    _, _, gpu_load, gpu_temp = get_cpu_gpu_from_ohm()
+    return gpu_load or 0, gpu_temp or 0
+```
+
+---
+
+✅ Avantage OHM/LibreHWMonitor :
+
+* Tu récupères **tout** (CPU %, RAM, GPU %, Températures, ventilateurs…).
+* Tu peux même afficher la RAM ou le stockage plus tard.
+
+⚠️ Inconvénient : il faut que l’utilisateur **lance OpenHardwareMonitor en arrière-plan**.
+
+---
+
+👉 Veux-tu que je t’ajoute un **fichier `ohm_reader.py` prêt à l’emploi** que tu mettras dans ton dossier `system/` pour centraliser l’accès aux capteurs ?

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Interprocess.cpp" />
+    <ClCompile Include="source\IntrospectionHelpers.cpp" />
+    <ClCompile Include="source\IntrospectionPopulators.cpp" />
+    <ClCompile Include="source\metadata\MetadataValidators.cpp" />
+    <ClCompile Include="source\PmStatusError.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\act\ActionContext.h" />
+    <ClInclude Include="source\act\ActionExecutionError.h" />
+    <ClInclude Include="source\act\ActionHelper.h" />
+    <ClInclude Include="source\act\Packet.h" />
+    <ClInclude Include="source\act\AsyncAction.h" />
+    <ClInclude Include="source\act\AsyncActionCollection.h" />
+    <ClInclude Include="source\act\SymmetricActionClient.h" />
+    <ClInclude Include="source\act\SymmetricActionConnector.h" />
+    <ClInclude Include="source\act\SymmetricActionServer.h" />
+    <ClInclude Include="source\act\Transfer.h" />
+    <ClInclude Include="source\PmStatusError.h" />
+    <ClInclude Include="source\IntrospectionCapsLookup.h" />
+    <ClInclude Include="source\IntrospectionDataTypeMapping.h" />
+    <ClInclude Include="source\IntrospectionHelpers.h" />
+    <ClInclude Include="source\metadata\EnumFrameType.h" />
+    <ClInclude Include="source\metadata\EnumMetricAvailability.h" />
+    <ClInclude Include="source\metadata\EnumDeviceType.h" />
+    <ClInclude Include="source\metadata\EnumGraphicsRuntime.h" />
+    <ClInclude Include="source\metadata\EnumDataType.h" />
+    <ClInclude Include="source\metadata\EnumNullEnum.h" />
+    <ClInclude Include="source\metadata\EnumStat.h" />
+    <ClInclude Include="source\metadata\EnumUnit.h" />
+    <ClInclude Include="source\metadata\EnumDeviceVendor.h" />
+    <ClInclude Include="source\Interprocess.h" />
+    <ClInclude Include="source\IntrospectionCloneAllocators.h" />
+    <ClInclude Include="source\IntrospectionPopulators.h" />
+    <ClInclude Include="source\IntrospectionTransfer.h" />
+    <ClInclude Include="source\IntrospectionMacroHelpers.h" />
+    <ClInclude Include="source\IntrospectionMetadata.h" />
+    <ClInclude Include="source\metadata\EnumMetricType.h" />
+    <ClInclude Include="source\metadata\EnumPresentMode.h" />
+    <ClInclude Include="source\metadata\EnumStatus.h" />
+    <ClInclude Include="source\metadata\MasterEnumList.h" />
+    <ClInclude Include="source\metadata\MetricList.h" />
+    <ClInclude Include="source\metadata\PreferredUnitList.h" />
+    <ClInclude Include="source\metadata\StatsShortcuts.h" />
+    <ClInclude Include="source\metadata\UnitList.h" />
+    <ClInclude Include="source\SharedMemoryTypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtilities\CommonUtilities.vcxproj">
+      <Project>{08a704d8-ca1c-45e9-8ede-542a1a43b53e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{ca23d648-daef-4f06-81d5-fe619bd31f0b}</ProjectGuid>
+    <RootNamespace>Interprocess</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+    <Import Project="..\..\vcpkg.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+    <Import Project="..\..\vcpkg.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <CustomBuildBeforeTargets>ClCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup>
+    <CustomBuildStep>
+      <Message>Generating EnumMetric.h</Message>
+      <Command>call ..\..\Tools\generate\EnumMetric\generate.cmd</Command>
+      <Inputs>
+          ..\..\IntelPresentMon\metrics.csv;
+          ..\..\Tools\generate\EnumMetric\generate.cmd;
+          ..\..\Tools\generate\EnumMetric\metrics.awk;
+      </Inputs>
+      <Outputs>..\..\build\obj\generated\metadata\EnumMetric.h</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/we4062</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\build\obj\generated</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/we4062</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\build\obj\generated</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
