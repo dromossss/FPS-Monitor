@@ -8,29 +8,19 @@ import os
 # --- LibreHardwareMonitor ---
 use_lhm = False
 try:
-    dll_path = r"C:\Users\ryadk\OneDrive\Documents\XCODING\codes\fps_tracker\LibreHardwareMonitor-net472"
-    sys.path.append(dll_path)
-    clr.AddReference("LibreHardwareMonitorLib")
-    import LibreHardwareMonitor.Hardware as Hardware
+    dll_path = r"C:\Users\ryadk\OneDrive\Documents\XCODING\codes\fps_tracker\libs\LibreHardwareMonitorLib.dll"
+    clr.AddReference(dll_path)
+    from LibreHardwareMonitor import Hardware  # type: ignore
     use_lhm = True
-except Exception:
-    pass
-
-# --- WMI (OpenHardwareMonitor) ---
-use_wmi = False
-try:
-    import wmi
-    w = wmi.WMI(namespace="root\\OpenHardwareMonitor")
-    use_wmi = True
-except Exception:
-    w = None
+    print("LibreHardwareMonitor loaded")
+except Exception as e:
+    print("LibreHardwareMonitor failed:", e)
 
 
 class CPUMonitor:
     def __init__(self, window_size=10):
         self.samples = deque(maxlen=window_size)
 
-        # Init LibreHardwareMonitor
         if use_lhm:
             self.computer = Hardware.Computer()
             self.computer.IsCpuEnabled = True
@@ -46,20 +36,10 @@ class CPUMonitor:
                     for sensor in hw.Sensors:
                         if sensor.SensorType == Hardware.SensorType.Temperature:
                             if "Package" in sensor.Name or "Core #1" in sensor.Name:
-                                return sensor.Value
-        except Exception:
-            pass
-        return None
-
-    def _get_temp_wmi(self):
-        try:
-            if w:
-                sensors = w.Sensor()
-                for sensor in sensors:
-                    if sensor.SensorType == u"Temperature" and "CPU" in sensor.Name:
-                        return float(sensor.Value)
-        except Exception:
-            pass
+                                if sensor.Value is not None:
+                                    return float(sensor.Value)
+        except Exception as e:
+            print("LHM error:", e)
         return None
 
     def _get_temp_psutil(self):
@@ -76,8 +56,6 @@ class CPUMonitor:
     def get_temp(self):
         if use_lhm and self.computer:
             return self._get_temp_lhm()
-        elif use_wmi:
-            return self._get_temp_wmi()
         else:
             return self._get_temp_psutil()
 
@@ -96,6 +74,6 @@ if __name__ == "__main__":
     monitor = CPUMonitor()
     while True:
         cpu, temp = monitor.sample()
-        temp_text = f"{temp:.1f}°C" if temp else "N/A°C"
+        temp_text = f"{temp:.1f}°C" if temp is not None else "N/A°C"
         print(f"CPU Instant: {cpu:.1f}% | Avg: {monitor.get_avg():.1f}% | Temp: {temp_text}")
         time.sleep(0.5)

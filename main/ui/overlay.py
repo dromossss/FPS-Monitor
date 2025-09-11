@@ -4,10 +4,13 @@ from system.fps_monitor_utils import FPSMonitor  # dxcam FPS monitor
 from system.cpu_monitor import CPUMonitor
 import pynvml
 
+
 class OverlayWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
+        self.setWindowFlags(
+            Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool
+        )
         self.setAttribute(Qt.WA_TranslucentBackground)
 
         # --- Layout ---
@@ -15,6 +18,7 @@ class OverlayWindow(QWidget):
         self.cpu_label = QLabel("CPU: -- % | Temp: -- °C")
         self.gpu_label = QLabel("GPU: -- % | Temp: -- °C")
         self.fps_label = QLabel("FPS: --")
+
         for lbl in (self.cpu_label, self.gpu_label, self.fps_label):
             lbl.setStyleSheet("color: lime; font-family: Consolas; font-size: 14px;")
 
@@ -43,12 +47,12 @@ class OverlayWindow(QWidget):
         self.fps_timer.timeout.connect(self.update_fps)
         self.fps_timer.start(16)  # ~60Hz update
 
-        self.resize(200, 100)
+        self.resize(220, 100)
 
     def update_stats(self):
         # --- CPU stats ---
         cpu_percent, cpu_temp = self.cpu_monitor.sample()
-        temp_text = f"{cpu_temp:.1f}°C" if cpu_temp else "--°C"
+        temp_text = f"{cpu_temp:.1f}°C" if cpu_temp is not None else "--°C"
         self.cpu_label.setText(f"CPU: {cpu_percent:.1f}% | Temp: {temp_text}")
 
         # --- GPU stats ---
